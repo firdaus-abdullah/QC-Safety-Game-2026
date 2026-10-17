@@ -150,33 +150,6 @@
   .plus{color:#047857; font-weight:700;}
   .minus{color:var(--red); font-weight:700;}
 
-  /* ---------- SCHEDULE ---------- */
-  .tablecard{background:var(--card); border:1px solid var(--line); border-radius:18px; overflow:hidden; box-shadow:var(--shadow);}
-  table{width:100%; border-collapse:collapse; font-size:.9rem;}
-  th, td{padding:13px 16px; text-align:left; border-bottom:1px solid var(--line);}
-  th{background:#f8fafc; font-size:.74rem; letter-spacing:.09em; text-transform:uppercase; color:var(--muted);}
-  tbody tr{transition:background .15s;}
-  tbody tr:hover{background:#f0fdfa;}
-  tbody tr:last-child td{border-bottom:none;}
-  .tagA{background:#ccfbf1; color:#0f766e;}
-  .tagB{background:#dbeafe; color:#1d4ed8;}
-  .tagA,.tagB{padding:3px 9px; border-radius:999px; font-size:.74rem; font-weight:800;}
-
-  /* ---------- TIPS ---------- */
-  .tips{display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:16px;}
-  .tip{
-    background:var(--card); border:1px solid var(--line); border-left:4px solid var(--teal);
-    border-radius:14px; padding:16px 18px; box-shadow:var(--shadow); font-size:.89rem;
-  }
-  .tip h4{margin:0 0 6px; font-size:.93rem;}
-  .tip p{margin:0; color:var(--muted);}
-  .tip:nth-child(2){border-left-color:var(--amber);}
-  .tip:nth-child(3){border-left-color:var(--blue);}
-  .tip:nth-child(4){border-left-color:#7c3aed;}
-  .tip:nth-child(5){border-left-color:var(--red);}
-  .tip:nth-child(6){border-left-color:#0ea5e9;}
-
-  footer{margin-top:60px; text-align:center; color:var(--muted); font-size:.82rem; border-top:1px solid var(--line); padding-top:26px;}
   .print-btn{position:fixed; right:22px; bottom:22px; z-index:50; box-shadow:0 6px 20px rgba(15,23,42,.2);}
 
   @media print{
@@ -779,74 +752,6 @@
     </div>
   </section>
 
-  <!-- ================= SCHEDULE ================= -->
-  <section id="schedule">
-    <div class="sec-head">
-      <span class="sec-num">RUN SHEET</span>
-      <h2>Master Rotation Schedule</h2>
-    </div>
-    <p class="sec-sub">75 minutes total. Two teams rotate in opposite directions so no station is ever double-booked.</p>
-
-    <div class="tablecard">
-      <table>
-        <thead>
-          <tr>
-            <th>Time</th>
-            <th><span class="tagA">Team A</span> (6 pax)</th>
-            <th><span class="tagB">Team B</span> (5 pax)</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td><strong>0 – 15 min</strong></td><td>Game 1 · Spill Squad</td><td>Game 2 · PPE Speed &amp; Spot</td></tr>
-          <tr><td><strong>15 – 30 min</strong></td><td>Game 2 · PPE Speed &amp; Spot</td><td>Game 3 · Broken Glass Protocol</td></tr>
-          <tr><td><strong>30 – 45 min</strong></td><td>Game 3 · Broken Glass Protocol</td><td>Game 4 · Cylinder Shuffle</td></tr>
-          <tr><td><strong>45 – 60 min</strong></td><td>Game 4 · Cylinder Shuffle</td><td>Game 5 · Label Lockdown</td></tr>
-          <tr><td><strong>60 – 75 min</strong></td><td>Game 5 · Label Lockdown</td><td>Game 1 · Spill Squad</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <p class="sec-sub" style="margin-top:12px;">If a single 75-minute block is impractical, split into five standalone 15-minute "safety moments" — one game per day at shift start.</p>
-  </section>
-
-  <!-- ================= FACILITATOR TIPS ================= -->
-  <section id="tips">
-    <div class="sec-head">
-      <span class="sec-num">FACILITATOR</span>
-      <h2>Tips from the Safety Officer's Playbook</h2>
-    </div>
-    <p class="sec-sub">Small details that decide whether this is a game — or a genuine safety intervention.</p>
-
-    <div class="tips">
-      <div class="tip">
-        <h4>1. One judge per station</h4>
-        <p>Use a fellow safety officer or supervisor with a printed scoring rubric. Objective judging is what makes the results credible back on the floor.</p>
-      </div>
-      <div class="tip">
-        <h4>2. Open with the "why"</h4>
-        <p>Each game starts with a 30-second real incident story — "last year a technician picked up broken glass with bare hands…". Stories stick; rules fade.</p>
-      </div>
-      <div class="tip">
-        <h4>3. Penalties are teaching moments</h4>
-        <p>Pause, explain, resume. Never let a "safety stop" embarrass anyone — the goal is a corrected habit, not a lost point.</p>
-      </div>
-      <div class="tip">
-        <h4>4. No real hazards on the day</h4>
-        <p>Water, mock labels and plastic props only. Complete a risk assessment for the games themselves — ironic, but essential.</p>
-      </div>
-      <div class="tip">
-        <h4>5. Tie scores to recognition</h4>
-        <p>Publish a live scoreboard and award a "Safety Champion" badge. Visible competition drives far higher engagement than a lecture.</p>
-      </div>
-      <div class="tip">
-        <h4>6. Capture the debrief</h4>
-        <p>Write debrief answers on a flipchart. Those notes become real improvement actions for your QC safety programme — the event should leave a paper trail.</p>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    Event Proposal · Safety Awareness Games for the QC Department · Prepared by the QC Safety Officer
-  </footer>
 </div>
 
 <button class="btn primary print-btn" onclick="window.print()">🖨 Print proposal</button>
