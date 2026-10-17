@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Safety Awareness Games — QC Department | Event Proposal</title>
+<style>
+  :root{
+    --ink:#0f172a; --muted:#64748b; --teal:#0f766e; --teal-l:#ccfbf1;
+    --amber:#f59e0b; --amber-l:#fef3c7; --red:#dc2626; --blue:#2563eb;
+    --line:#e2e8f0; --bg:#f1f5f9; --card:#ffffff;
+    --shadow:0 1px 2px rgba(15,23,42,.06), 0 8px 24px rgba(15,23,42,.07);
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:"Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+    line-height:1.55; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1180px; margin:0 auto; padding:0 20px 80px;}
+
+  /* ---------- HEADER ---------- */
+  header.hero{
+    background:linear-gradient(135deg,#0f766e 0%,#115e59 55%,#134e4a 100%);
+    color:#fff; padding:48px 20px 56px; position:relative; overflow:hidden;
+  }
+  header.hero::after{
+    content:""; position:absolute; inset:0;
+    background:radial-gradient(circle at 85% 20%, rgba(245,158,11,.28), transparent 45%),
+               radial-gradient(circle at 10% 90%, rgba(255,255,255,.10), transparent 40%);
+    pointer-events:none;
+  }
+  .hero-inner{max-width:1140px; margin:0 auto; position:relative; z-index:1;}
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px; font-size:.75rem; letter-spacing:.14em;
+    text-transform:uppercase; font-weight:700; background:rgba(255,255,255,.14);
+    border:1px solid rgba(255,255,255,.25); padding:6px 14px; border-radius:999px;
+  }
+  h1{margin:18px 0 8px; font-size:clamp(1.7rem,4vw,2.6rem); line-height:1.15; letter-spacing:-.02em;}
+  .hero p.lead{margin:0; max-width:720px; color:#d1fae5; font-size:1.02rem;}
+  .stats{display:flex; flex-wrap:wrap; gap:12px; margin-top:28px;}
+  .stat{
+    background:rgba(255,255,255,.10); border:1px solid rgba(255,255,255,.22);
+    border-radius:14px; padding:12px 18px; min-width:120px;
+    backdrop-filter:blur(4px);
+  }
+  .stat b{display:block; font-size:1.45rem; line-height:1.1; color:#fff;}
+  .stat span{font-size:.74rem; letter-spacing:.09em; text-transform:uppercase; color:#a7f3d0; font-weight:600;}
+
+  /* ---------- SECTIONS ---------- */
+  section{margin-top:52px;}
+  .sec-head{display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; margin-bottom:6px;}
+  .sec-num{
+    font-size:.72rem; font-weight:800; letter-spacing:.1em; color:var(--teal);
+    background:var(--teal-l); padding:4px 10px; border-radius:6px;
+  }
+  h2{margin:0; font-size:1.35rem; letter-spacing:-.01em;}
+  .sec-sub{color:var(--muted); font-size:.93rem; margin:2px 0 22px;}
+
+  /* ---------- TIMER BAR ---------- */
+  .timerbar{
+    background:var(--card); border:1px solid var(--line); border-radius:18px;
+    padding:18px 22px; box-shadow:var(--shadow); display:flex; flex-wrap:wrap;
+    align-items:center; gap:18px; justify-content:space-between;
+  }
+  .timer-left{display:flex; align-items:center; gap:16px;}
+  .clock{
+    font-variant-numeric:tabular-nums; font-weight:800; font-size:2.3rem; letter-spacing:.02em;
+    color:var(--teal); min-width:132px; text-align:center;
+    background:#f8fafc; border:1px solid var(--line); border-radius:14px; padding:4px 12px;
+  }
+  .clock.warn{color:var(--amber); border-color:#fcd34d; background:#fffbeb;}
+  .clock.danger{color:var(--red); border-color:#fca5a5; background:#fef2f2;}
+  .timer-label{font-size:.78rem; text-transform:uppercase; letter-spacing:.1em; color:var(--muted); font-weight:700;}
+  .timer-label b{display:block; font-size:.95rem; color:var(--ink); letter-spacing:0; text-transform:none; font-weight:600;}
+  .btn{
+    border:1px solid var(--line); background:#fff; color:var(--ink); font:inherit; font-weight:600;
+    padding:9px 16px; border-radius:10px; cursor:pointer; transition:.15s; font-size:.88rem;
+  }
+  .btn:hover{border-color:var(--teal); color:var(--teal); background:#f0fdfa;}
+  .btn.primary{background:var(--teal); color:#fff; border-color:var(--teal);}
+  .btn.primary:hover{background:#115e59; color:#fff;}
+  .btn.small{padding:6px 12px; font-size:.8rem;}
+  .chips{display:flex; gap:8px; flex-wrap:wrap;}
+
+  /* ---------- GAME CARDS ---------- */
+  .games{display:grid; grid-template-columns:repeat(auto-fit,minmax(400px,1fr)); gap:26px;}
+  @media(max-width:520px){ .games{grid-template-columns:1fr;} }
+
+  .game-card{
+    background:var(--card); border:1px solid var(--line); border-radius:20px;
+    overflow:hidden; box-shadow:var(--shadow); display:flex; flex-direction:column;
+    transition:transform .2s, box-shadow .2s;
+  }
+  .game-card:hover{transform:translateY(-3px); box-shadow:0 12px 34px rgba(15,23,42,.12);}
+  .card-top{display:flex; align-items:center; gap:14px; padding:18px 20px 12px;}
+  .badge{
+    width:40px; height:40px; flex:0 0 40px; border-radius:12px; display:grid; place-items:center;
+    font-weight:800; font-size:1.05rem; color:#fff; background:var(--teal);
+  }
+  .game-card:nth-child(2) .badge{background:var(--blue);}
+  .game-card:nth-child(3) .badge{background:var(--amber);}
+  .game-card:nth-child(4) .badge{background:#7c3aed;}
+  .game-card:nth-child(5) .badge{background:#be123c;}
+  .card-top h3{margin:0; font-size:1.06rem; letter-spacing:-.01em;}
+  .card-top .theme{font-size:.79rem; color:var(--muted); margin-top:1px;}
+
+  /* ---------- SVG SCENE ---------- */
+  .scene-wrap{position:relative; margin:0 16px; border-radius:14px; overflow:hidden; border:1px solid var(--line);}
+  .scene{display:block; width:100%; height:auto; background:#eef6f5;}
+  .hotspot{
+    cursor:pointer; fill:#ffffff; fill-opacity:.55; stroke:#0f766e; stroke-width:2.5;
+    stroke-dasharray:4 3; transform-box:fill-box; transform-origin:center;
+    animation:pulse 2.4s ease-in-out infinite;
+  }
+  .hotspot:hover, .hotspot.active{fill:#0f766e; fill-opacity:.95; stroke:#0f766e;}
+  .hotspot:focus{outline:none; fill:#f59e0b; stroke:#b45309;}
+  @keyframes pulse{0%,100%{opacity:.55; r:12;} 50%{opacity:1; r:14;}}
+  .hotspot-label{font-size:13px; font-weight:800; fill:#0f766e; pointer-events:none; text-anchor:middle;}
+  .hotspot.active + .hotspot-label, .hotspot:hover + .hotspot-label{fill:#fff;}
+
+  .hotspot-panel{
+    margin:0 16px; border:1px dashed var(--line); border-top:none;
+    border-radius:0 0 14px 14px; padding:11px 14px; font-size:.85rem; color:var(--muted);
+    background:#f8fafc; min-height:56px; transition:.2s;
+  }
+  .hotspot-panel.show{border-color:#99f6e4; background:#f0fdfa; color:var(--ink);}
+  .hotspot-panel strong{color:var(--teal); display:block; font-size:.72rem; letter-spacing:.09em; text-transform:uppercase; margin-bottom:2px;}
+  .hint{font-size:.72rem; color:var(--muted); padding:6px 16px 0; font-style:italic;}
+
+  /* ---------- TABS ---------- */
+  .tabs{display:flex; gap:6px; padding:16px 16px 0; flex-wrap:wrap;}
+  .tab{
+    border:none; background:#f1f5f9; color:var(--muted); font:inherit; font-size:.79rem; font-weight:700;
+    padding:7px 12px; border-radius:8px; cursor:pointer; transition:.15s;
+  }
+  .tab:hover{background:#e2e8f0; color:var(--ink);}
+  .tab.active{background:var(--teal); color:#fff;}
+  .panel{display:none; padding:14px 18px 20px; font-size:.88rem;}
+  .panel.active{display:block; animation:fade .22s ease;}
+  @keyframes fade{from{opacity:0; transform:translateY(4px);} to{opacity:1; transform:none;}}
+  .panel ul{margin:0; padding-left:18px;}
+  .panel li{margin-bottom:7px;}
+  .panel li:last-child{margin-bottom:0;}
+  .panel p{margin:0 0 10px;}
+  .panel p:last-child{margin-bottom:0;}
+  .score-row{display:flex; justify-content:space-between; gap:10px; padding:6px 0; border-bottom:1px dashed var(--line); font-size:.86rem;}
+  .score-row:last-child{border-bottom:none;}
+  .score-row b{white-space:nowrap;}
+  .plus{color:#047857; font-weight:700;}
+  .minus{color:var(--red); font-weight:700;}
+
+  /* ---------- SCHEDULE ---------- */
+  .tablecard{background:var(--card); border:1px solid var(--line); border-radius:18px; overflow:hidden; box-shadow:var(--shadow);}
+  table{width:100%; border-collapse:collapse; font-size:.9rem;}
+  th, td{padding:13px 16px; text-align:left; border-bottom:1px solid var(--line);}
+  th{background:#f8fafc; font-size:.74rem; letter-spacing:.09em; text-transform:uppercase; color:var(--muted);}
+  tbody tr{transition:background .15s;}
+  tbody tr:hover{background:#f0fdfa;}
+  tbody tr:last-child td{border-bottom:none;}
+  .tagA{background:#ccfbf1; color:#0f766e;}
+  .tagB{background:#dbeafe; color:#1d4ed8;}
+  .tagA,.tagB{padding:3px 9px; border-radius:999px; font-size:.74rem; font-weight:800;}
+
+  /* ---------- TIPS ---------- */
+  .tips{display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:16px;}
+  .tip{
+    background:var(--card); border:1px solid var(--line); border-left:4px solid var(--teal);
+    border-radius:14px; padding:16px 18px; box-shadow:var(--shadow); font-size:.89rem;
+  }
+  .tip h4{margin:0 0 6px; font-size:.93rem;}
+  .tip p{margin:0; color:var(--muted);}
+  .tip:nth-child(2){border-left-color:var(--amber);}
+  .tip:nth-child(3){border-left-color:var(--blue);}
+  .tip:nth-child(4){border-left-color:#7c3aed;}
+  .tip:nth-child(5){border-left-color:var(--red);}
+  .tip:nth-child(6){border-left-color:#0ea5e9;}
+
+  footer{margin-top:60px; text-align:center; color:var(--muted); font-size:.82rem; border-top:1px solid var(--line); padding-top:26px;}
+  .print-btn{position:fixed; right:22px; bottom:22px; z-index:50; box-shadow:0 6px 20px rgba(15,23,42,.2);}
+
+  @media print{
+    body{background:#fff;}
+    .print-btn,.timerbar,.tabs{display:none !important;}
+    .panel{display:block !important; page-break-inside:avoid;}
+    .game-card{page-break-inside:avoid; box-shadow:none;}
+    header.hero{background:#0f766e !important; -webkit-print-color-adjust:exact; print-color-adjust:exact;}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <span class="eyebrow">● Event Proposal &nbsp;|&nbsp; QC Department Safety Awareness</span>
+    <h1>5 Interactive Safety Games for the QC Lab</h1>
+    <p class="lead">A 75-minute rotating station event built around real QC hazards — chemical spills, PPE compliance,
+    glassware breakage, compressed gas cylinders and sample labelling. Designed by a Safety Officer, for the people who
+    work at the bench.</p>
+    <div class="stats">
+      <div class="stat"><b>5</b><span>Stations</span></div>
+      <div class="stat"><b>15</b><span>Min per game</span></div>
+      <div class="stat"><b>11</b><span>Participants</span></div>
+      <div class="stat"><b>75</b><span>Min total run</span></div>
+      <div class="stat"><b>2</b><span>Teams (6 vs 5)</span></div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- ================= TIMER ================= -->
+  <section id="timer">
+    <div class="sec-head">
+      <span class="sec-num">TOOL</span>
+      <h2>Station Timer</h2>
+    </div>
+    <p class="sec-sub">Run each station for exactly 15 minutes: 2 min briefing → 10 min play → 3 min debrief.</p>
+
+    <div class="timerbar">
+      <div class="timer-left">
+        <div class="clock" id="clock">15:00</div>
+        <div class="timer-label">Current station<b id="phaseLabel">Briefing &amp; play</b></div>
+      </div>
+      <div class="chips">
+        <button class="btn small" data-set="15">15 min</button>
+        <button class="btn small" data-set="10">10 min</button>
+        <button class="btn small" data-set="5">5 min</button>
+        <button class="btn small" data-set="3">3 min</button>
+      </div>
+      <div class="chips">
+        <button class="btn primary" id="startBtn">▶ Start</button>
+        <button class="btn" id="resetBtn">↺ Reset</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= GAMES ================= -->
+  <section id="games">
+    <div class="sec-head">
+      <span class="sec-num">GAMES</span>
+      <h2>The Five Stations</h2>
+    </div>
+    <p class="sec-sub">Tap any pulsing dot on an illustration to reveal a safety insight. Switch tabs for materials, rules and scoring.</p>
+
+    <div class="games">
+
+      <!-- ============ GAME 1 ============ -->
+      <article class="game-card">
+        <div class="card-top">
+          <div class="badge">1</div>
+          <div>
+            <h3>Spill Squad</h3>
+            <div class="theme">Chemical spill response relay · spill kit, PPE, SDS</div>
+          </div>
+        </div>
+
+        <div class="scene-wrap">
+          <svg class="scene" viewBox="0 0 400 220" role="img" aria-label="Chemical spill scene with spill kit, caution sign, gloves and SDS">
+            <rect width="400" height="220" fill="#eef6f5"/>
+            <rect y="172" width="400" height="48" fill="#dbeae8"/>
+            <!-- puddle -->
+            <ellipse cx="150" cy="178" rx="60" ry="12" fill="#60a5fa" opacity=".7"/>
+            <ellipse cx="112" cy="173" rx="19" ry="6" fill="#3b82f6" opacity=".65"/>
+            <ellipse cx="196" cy="182" rx="13" ry="5" fill="#3b82f6" opacity=".55"/>
+            <!-- tipped bottle -->
+            <g transform="translate(228,118) rotate(72)">
+              <rect x="0" y="0" width="32" height="52" rx="5" fill="#fbbf24" stroke="#b45309" stroke-width="2"/>
+              <rect x="9" y="-11" width="14" height="13" rx="2" fill="#b45309"/>
+              <rect x="4" y="14" width="24" height="16" rx="2" fill="#fffdf5" stroke="#b45309" stroke-width="1.2"/>
+            </g>
+            <!-- caution sign -->
+            <g transform="translate(322,116)">
+              <polygon points="0,-32 36,30 -36,30" fill="#facc15" stroke="#111827" stroke-width="3" stroke-linejoin="round"/>
+              <text x="0" y="22" text-anchor="middle" font-size="28" font-weight="800" fill="#111827" font-family="Segoe UI, sans-serif">!</text>
+            </g>
+            <!-- spill kit -->
+            <g transform="translate(24,128)">
+              <rect width="62" height="44" rx="5" fill="#0f766e"/>
+              <rect x="26" y="8" width="11" height="28" fill="#fff"/>
+              <rect x="17" y="17" width="29" height="11" fill="#fff"/>
+              <text x="31" y="40" text-anchor="middle" font-size="7" fill="#ccfbf1" font-family="Segoe UI, sans-serif" font-weight="700">SPILL KIT</text>
+            </g>
+            <!-- gloves -->
+            <g transform="translate(112,60)">
+              <rect x="0" y="12" width="40" height="26" rx="10" fill="#a5b4fc" stroke="#4f46e5" stroke-width="2"/>
+              <circle cx="9" cy="10" r="5.5" fill="#a5b4fc" stroke="#4f46e5" stroke-width="2"/>
+              <circle cx="20" cy="6" r="5.5" fill="#a5b4fc" stroke="#4f46e5" stroke-width="2"/>
+              <circle cx="31" cy="10" r="5.5" fill="#a5b4fc" stroke="#4f46e5" stroke-width="2"/>
+            </g>
+            <!-- SDS sheet -->
+            <g transform="translate(178,52)">
+              <rect width="46" height="58" rx="3" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+              <rect x="7" y="10" width="32" height="4" fill="#cbd5e1"/>
+              <rect x="7" y="20" width="26" height="4" fill="#cbd5e1"/>
+              <rect x="7" y="30" width="32" height="4" fill="#cbd5e1"/>
+              <rect x="7" y="40" width="18" height="4" fill="#dc2626"/>
+            </g>
+
+            <!-- hotspots -->
+            <circle class="hotspot" cx="150" cy="178" r="13" tabindex="0" role="button"
+              data-title="The puddle" data-tip="Never assume it is water. Read the label and the SDS before you touch anything."/>
+            <circle class="hotspot" cx="322" cy="122" r="13" tabindex="0" role="button"
+              data-title="Caution signage" data-tip="Sign and barricade the area FIRST — before you fetch the kit. Protect others while you work."/>
+            <circle class="hotspot" cx="55" cy="150" r="13" tabindex="0" role="button"
+              data-title="Spill kit" data-tip="Know its location and contents before an emergency. A kit you cannot find is not a kit."/>
+            <circle class="hotspot" cx="248" cy="140" r="13" tabindex="0" role="button"
+              data-title="The container" data-tip="Identify the chemical from the label, then confirm handling in the SDS. Unknown = evacuate and escalate."/>
+            <circle class="hotspot" cx="132" cy="72" r="13" tabindex="0" role="button"
+              data-title="PPE" data-tip="Gloves and goggles go on before contact — and come off last, after hand hygiene."/>
+          </svg>
+          <div class="hotspot-panel" data-default="Click a pulsing dot on the illustration to reveal a safety insight.">
+            Click a pulsing dot on the illustration to reveal a safety insight.
+          </div>
+        </div>
+
+        <div class="tabs">
+          <button class="tab active" data-tab="g1-obj">Objective</button>
+          <button class="tab" data-tab="g1-mat">Materials</button>
+          <button class="tab" data-tab="g1-play">How to Play</button>
+          <button class="tab" data-tab="g1-score">Scoring</button>
+        </div>
+
+        <div class="panel active" id="g1-obj">
+          <p><strong>Goal:</strong> Teams execute a complete, correct spill response sequence under time pressure — proving the response is muscle memory, not guesswork.</p>
+          <ul>
+            <li>Recognise the correct order: protect → identify → contain → clean → dispose → report.</li>
+            <li>Select the right PPE for a spill before contact.</li>
+            <li>Use the SDS to confirm hazard and waste route.</li>
+          </ul>
+        </div>
+        <div class="panel" id="g1-mat">
+          <ul>
+            <li>2 mock spill kits (absorbent pads, pillows, tongs, waste bags, caution signs)</li>
+            <li>Blue-coloured water in a squeeze bottle ("chemical")</li>
+            <li>2 trays, 1 mock SDS sheet per team</li>
+            <li>Nitrile gloves + safety goggles × 2 sets</li>
+            <li>Floor tape to mark a 2-metre contamination zone</li>
+          </ul>
+        </div>
+        <div class="panel" id="g1-play">
+          <p><strong>Relay format — 10 minutes.</strong></p>
+          <ul>
+            <li><b>P1:</b> dons gloves + goggles correctly, places caution sign, returns.</li>
+            <li><b>P2:</b> places absorbent pad on the spill, returns.</li>
+            <li><b>P3:</b> removes broken glass with tongs into the waste bag — never bare hands.</li>
+            <li><b>P4:</b> wipes the area down.</li>
+            <li><b>P5:</b> bags and labels the waste for disposal.</li>
+            <li><b>P6:</b> reads the key hazard + disposal info aloud from the mock SDS.</li>
+          </ul>
+          <p>First team to complete the full sequence <em>correctly</em> wins.</p>
+        </div>
+        <div class="panel" id="g1-score">
+          <div class="score-row"><span>Complete correct sequence</span><b class="plus">+10</b></div>
+          <div class="score-row"><span>Bare-hand contact</span><b class="minus">−5</b></div>
+          <div class="score-row"><span>Missing or incorrect PPE</span><b class="minus">−5</b></div>
+          <div class="score-row"><span>Wrong waste disposal route</span><b class="minus">−5</b></div>
+          <div class="score-row"><span>Fastest safe completion</span><b class="plus">+5</b></div>
+        </div>
+      </article>
+
+      <!-- ============ GAME 2 ============ -->
+      <article class="game-card">
+        <div class="card-top">
+          <div class="badge">2</div>
+          <div>
+            <h3>PPE Speed &amp; Spot</h3>
+            <div class="theme">Dress right, spot wrong · donning order &amp; violation ID</div>
+          </div>
+        </div>
+
+        <div class="scene-wrap">
+          <svg class="scene" viewBox="0 0 400 220" role="img" aria-label="Figure wearing lab PPE with goggles, coat, gloves and shoe covers">
+            <rect width="400" height="220" fill="#eef2ff"/>
+            <rect y="182" width="400" height="38" fill="#e0e7ff"/>
+            <!-- legs -->
+            <rect x="182" y="150" width="14" height="34" rx="4" fill="#cbd5e1"/>
+            <rect x="204" y="150" width="14" height="34" rx="4" fill="#cbd5e1"/>
+            <!-- shoe covers -->
+            <rect x="174" y="180" width="28" height="12" rx="6" fill="#38bdf8" stroke="#0369a1" stroke-width="2"/>
+            <rect x="198" y="180" width="28" height="12" rx="6" fill="#38bdf8" stroke="#0369a1" stroke-width="2"/>
+            <!-- lab coat body -->
+            <path d="M200 92 L242 104 L246 158 L154 158 L158 104 Z" fill="#ffffff" stroke="#94a3b8" stroke-width="2.5" stroke-linejoin="round"/>
+            <line x1="200" y1="92" x2="200" y2="158" stroke="#cbd5e1" stroke-width="2"/>
+            <!-- arms -->
+            <rect x="138" y="108" width="20" height="46" rx="9" fill="#ffffff" stroke="#94a3b8" stroke-width="2.5"/>
+            <rect x="242" y="108" width="20" height="46" rx="9" fill="#ffffff" stroke="#94a3b8" stroke-width="2.5"/>
+            <!-- gloves -->
+            <circle cx="148" cy="158" r="11" fill="#a5b4fc" stroke="#4f46e5" stroke-width="2.5"/>
+            <circle cx="252" cy="158" r="11" fill="#a5b4fc" stroke="#4f46e5" stroke-width="2.5"/>
+            <!-- head -->
+            <circle cx="200" cy="66" r="24" fill="#fcd34d" stroke="#b45309" stroke-width="2.5"/>
+            <!-- hairnet -->
+            <path d="M176 60 A24 24 0 0 1 224 60 Z" fill="#60a5fa" opacity=".85"/>
+            <!-- goggles -->
+            <rect x="176" y="58" width="48" height="15" rx="7.5" fill="#93c5fd" stroke="#2563eb" stroke-width="2.5"/>
+            <line x1="200" y1="58" x2="200" y2="73" stroke="#2563eb" stroke-width="2"/>
+            <!-- mask -->
+            <path d="M184 82 h32 a4 4 0 0 1 4 4 v6 a20 20 0 0 1 -40 0 v-6 a4 4 0 0 1 4 -4z" fill="#e2e8f0" stroke="#94a3b8" stroke-width="2"/>
+
+            <circle class="hotspot" cx="200" cy="66" r="12" tabindex="0" role="button"
+              data-title="Hairnet" data-tip="Hair containment comes before the coat — loose hair near rotating equipment or open samples is a real hazard."/>
+            <circle class="hotspot" cx="248" cy="66" r="12" tabindex="0" role="button"
+              data-title="Goggles" data-tip="Safety glasses are not goggles. Splash protection needs a sealed edge."/>
+            <circle class="hotspot" cx="252" cy="158" r="12" tabindex="0" role="button"
+              data-title="Gloves" data-tip="Gloves are the highest-risk item at doffing. Remove them last-but-one and wash hands immediately."/>
+            <circle class="hotspot" cx="160" cy="130" r="12" tabindex="0" role="button"
+              data-title="Lab coat" data-tip="Fully buttoned, sleeves to the wrist. An open coat is a walking contamination vector."/>
+            <circle class="hotspot" cx="188" cy="188" r="12" tabindex="0" role="button"
+              data-title="Shoe covers" data-tip="Open-toe shoes are never acceptable in the lab — covers do not compensate for the wrong footwear."/>
+          </svg>
+          <div class="hotspot-panel" data-default="Click a pulsing dot on the illustration to reveal a safety insight.">
+            Click a pulsing dot on the illustration to reveal a safety insight.
+          </div>
+        </div>
+
+        <div class="tabs">
+          <button class="tab active" data-tab="g2-obj">Objective</button>
+          <button class="tab" data-tab="g2-mat">Materials</button>
+          <button class="tab" data-tab="g2-play">How to Play</button>
+          <button class="tab" data-tab="g2-score">Scoring</button>
+        </div>
+
+        <div class="panel active" id="g2-obj">
+          <p><strong>Goal:</strong> Prove that everyone knows the correct donning <em>and</em> doffing order — and can spot a PPE violation in a photograph at a glance.</p>
+          <ul>
+            <li>Correct sequence: hairnet → mask → goggles → coat → gloves.</li>
+            <li>Doffing removes the most contaminated item first, gloves last-but-one.</li>
+            <li>Build the habit of scanning colleagues before entering the lab.</li>
+          </ul>
+        </div>
+        <div class="panel" id="g2-mat">
+          <ul>
+            <li>2 full PPE sets: lab coat, goggles, nitrile gloves, hairnet, shoe covers, mask</li>
+            <li>10 printed "PPE violation" photos (open-toe shoes, gloves on a door handle, goggles on forehead, loose hair near equipment, etc.)</li>
+            <li>2 boards or clear table areas</li>
+            <li>Sticky flags and markers for each team</li>
+          </ul>
+        </div>
+        <div class="panel" id="g2-play">
+          <p><strong>Two rounds — 10 minutes.</strong></p>
+          <ul>
+            <li><b>Round 1 — Speed Donning (5 min):</b> one player per team dons full PPE in the correct order while teammates coach. Then they doff in the correct order. Accuracy is judged over speed.</li>
+            <li><b>Round 2 — Spot the Violation (5 min):</b> teams receive 10 photos and have 3 minutes to flag every violation and write down what is wrong.</li>
+          </ul>
+        </div>
+        <div class="panel" id="g2-score">
+          <div class="score-row"><span>Correct donning + doffing order</span><b class="plus">+10</b></div>
+          <div class="score-row"><span>Each correctly identified violation</span><b class="plus">+2</b></div>
+          <div class="score-row"><span>Wrong order step</span><b class="minus">−2</b></div>
+          <div class="score-row"><span>Safety stop (bare hands / no goggles)</span><b class="minus">−5</b></div>
+        </div>
+      </article>
+
+      <!-- ============ GAME 3 ============ -->
+      <article class="game-card">
+        <div class="card-top">
+          <div class="badge">3</div>
+          <div>
+            <h3>Broken Glass Protocol</h3>
+            <div class="theme">Breakage handling · sharps disposal · cracked glassware</div>
+          </div>
+        </div>
+
+        <div class="scene-wrap">
+          <svg class="scene" viewBox="0 0 400 220" role="img" aria-label="Broken glassware scene with tongs, sharps container and gloves">
+            <rect width="400" height="220" fill="#fef7ed"/>
+            <rect y="176" width="400" height="44" fill="#fde9d2"/>
+            <!-- shards -->
+            <polygon points="90,168 104,148 116,170" fill="#bae6fd" stroke="#0284c7" stroke-width="2"/>
+            <polygon points="132,174 143,156 152,176" fill="#bae6fd" stroke="#0284c7" stroke-width="2"/>
+            <polygon points="68,176 78,162 86,178" fill="#bae6fd" stroke="#0284c7" stroke-width="2"/>
+            <polygon points="155,168 164,158 170,170" fill="#bae6fd" stroke="#0284c7" stroke-width="2"/>
+            <!-- cracked beaker -->
+            <g transform="translate(228,118)">
+              <path d="M0 0 h44 v34 l-6 10 h-32 l-6 -10 z" fill="#e0f2fe" fill-opacity=".8" stroke="#0284c7" stroke-width="2.5" stroke-linejoin="round"/>
+              <path d="M16 8 l8 12 l-6 8 l10 12" fill="none" stroke="#dc2626" stroke-width="2.5" stroke-linecap="round"/>
+              <rect x="0" y="0" width="44" height="6" rx="3" fill="#7dd3fc"/>
+            </g>
+            <!-- tongs -->
+            <g transform="translate(86,108)">
+              <line x1="0" y1="0" x2="46" y2="52" stroke="#64748b" stroke-width="5" stroke-linecap="round"/>
+              <line x1="16" y1="0" x2="52" y2="44" stroke="#64748b" stroke-width="5" stroke-linecap="round"/>
+              <circle cx="8" cy="-2" r="6" fill="#94a3b8"/>
+            </g>
+            <!-- sharps container -->
+            <g transform="translate(300,110)">
+              <rect width="58" height="66" rx="6" fill="#facc15" stroke="#b45309" stroke-width="2.5"/>
+              <rect x="0" y="0" width="58" height="16" rx="6" fill="#dc2626"/>
+              <text x="29" y="12" text-anchor="middle" font-size="8.5" font-weight="800" fill="#fff" font-family="Segoe UI, sans-serif">SHARPS</text>
+              <circle cx="29" cy="42" r="13" fill="none" stroke="#b45309" stroke-width="2.5"/>
+              <path d="M29 33 v18 M22 38 l7 -5 l7 5" fill="none" stroke="#b45309" stroke-width="2.5" stroke-linecap="round"/>
+            </g>
+            <!-- cut-resistant glove -->
+            <g transform="translate(20,118)">
+              <rect x="0" y="14" width="42" height="28" rx="10" fill="#94a3b8" stroke="#475569" stroke-width="2.5"/>
+              <circle cx="10" cy="12" r="6" fill="#94a3b8" stroke="#475569" stroke-width="2.5"/>
+              <circle cx="21" cy="8" r="6" fill="#94a3b8" stroke="#475569" stroke-width="2.5"/>
+              <circle cx="32" cy="12" r="6" fill="#94a3b8" stroke="#475569" stroke-width="2.5"/>
+            </g>
+
+            <circle class="hotspot" cx="108" cy="164" r="12" tabindex="0" role="button"
+              data-title="The shards" data-tip="Never pick up glass with bare hands or a paper towel. Use tongs, dustpan and brush — always."/>
+            <circle class="hotspot" cx="118" cy="130" r="12" tabindex="0" role="button"
+              data-title="Tongs" data-tip="The correct tool for the correct job. Tongs, then dustpan, then a wipe-down of the whole area."/>
+            <circle class="hotspot" cx="330" cy="130" r="12" tabindex="0" role="button"
+              data-title="Sharps container" data-tip="Glass goes in sharps, not general waste — and not the biohazard bag unless contents were infectious."/>
+            <circle class="hotspot" cx="40" cy="134" r="12" tabindex="0" role="button"
+              data-title="Cut-resistant gloves" data-tip="Standard nitrile will not stop a shard. Use cut-resistant gloves plus nitrile if chemicals are involved."/>
+            <circle class="hotspot" cx="252" cy="128" r="12" tabindex="0" role="button"
+              data-title="Cracked glassware" data-tip="Cracked glassware is retired immediately. It is never returned to the shelf — no exceptions."/>
+          </svg>
+          <div class="hotspot-panel" data-default="Click a pulsing dot on the illustration to reveal a safety insight.">
+            Click a pulsing dot on the illustration to reveal a safety insight.
+          </div>
+        </div>
+
+        <div class="tabs">
+          <button class="tab active" data-tab="g3-obj">Objective</button>
+          <button class="tab" data-tab="g3-mat">Materials</button>
+          <button class="tab" data-tab="g3-play">How to Play</button>
+          <button class="tab" data-tab="g3-score">Scoring</button>
+        </div>
+
+        <div class="panel active" id="g3-obj">
+          <p><strong>Goal:</strong> Turn breakage cleanup into a planned, rehearsed procedure rather than an improvised scramble.</p>
+          <ul>
+            <li>Plan the cleanup as a toolbox talk before touching anything.</li>
+            <li>Handle "contaminated glass" twist scenarios correctly.</li>
+            <li>Reinforce that cracked glassware is removed from service, not reused.</li>
+          </ul>
+        </div>
+        <div class="panel" id="g3-mat">
+          <ul>
+            <li>2 sets: cut-resistant gloves, dustpan, brush, tongs, thick paper towel</li>
+            <li>2 mock sharps containers and biohazard bags</li>
+            <li>Rigid plastic "shards" or crumpled foil — <strong>never real glass</strong></li>
+            <li>6 twist cards (contaminated glass, cracked beaker, glass in a sink, etc.)</li>
+            <li>Stopwatch and whistle</li>
+          </ul>
+        </div>
+        <div class="panel" id="g3-play">
+          <p><strong>Timed challenge — 10 minutes.</strong></p>
+          <ul>
+            <li><b>Planning phase (3 min):</b> team writes and agrees the cleanup sequence — exactly like a pre-task toolbox talk.</li>
+            <li><b>Execution:</b> two players perform the cleanup under judge observation: cut-resistant gloves → tongs/dustpan (never bare hands) → wrap in thick paper → designated container → inspect area → report breakage.</li>
+            <li><b>Twist card:</b> the judge interrupts mid-cleanup with a scenario — e.g. <em>"This glass contained a hazardous chemical — what now?"</em> or <em>"You found a crack in another beaker — do you use it?"</em></li>
+          </ul>
+        </div>
+        <div class="panel" id="g3-score">
+          <div class="score-row"><span>Correct cleanup sequence</span><b class="plus">+10</b></div>
+          <div class="score-row"><span>Correct twist-card response</span><b class="plus">+5</b></div>
+          <div class="score-row"><span>Fastest safe cleanup</span><b class="plus">+5</b></div>
+          <div class="score-row"><span>Any bare-hand motion (safety stop)</span><b class="minus">−10</b></div>
+        </div>
+      </article>
+
+      <!-- ============ GAME 4 ============ -->
+      <article class="game-card">
+        <div class="card-top">
+          <div class="badge">4</div>
+          <div>
+            <h3>Cylinder Shuffle</h3>
+            <div class="theme">Compressed gas · inspection, securing, transport, emergency</div>
+          </div>
+        </div>
+
+        <div class="scene-wrap">
+          <svg class="scene" viewBox="0 0 400 220" role="img" aria-label="Compressed gas cylinder secured with a chain on a trolley near cones and signage">
+            <rect width="400" height="220" fill="#f5f3ff"/>
+            <rect y="182" width="400" height="38" fill="#ede9fe"/>
+            <!-- wall bracket -->
+            <rect x="292" y="40" width="70" height="10" rx="4" fill="#a78bfa"/>
+            <rect x="300" y="44" width="8" height="120" fill="#c4b5fd"/>
+            <!-- cylinder -->
+            <g transform="translate(176,46)">
+              <rect x="0" y="0" width="56" height="126" rx="26" fill="#22c55e" stroke="#15803d" stroke-width="2.5"/>
+              <rect x="18" y="-18" width="20" height="20" rx="4" fill="#a16207" stroke="#78350f" stroke-width="2"/>
+              <rect x="8" y="26" width="40" height="30" rx="3" fill="#ffffff" opacity=".9"/>
+              <text x="28" y="46" text-anchor="middle" font-size="10" font-weight="800" fill="#15803d" font-family="Segoe UI, sans-serif">N₂</text>
+              <rect x="14" y="86" width="28" height="4" rx="2" fill="#15803d" opacity=".6"/>
+              <rect x="14" y="96" width="28" height="4" rx="2" fill="#15803d" opacity=".6"/>
+            </g>
+            <!-- chain -->
+            <g stroke="#475569" stroke-width="3.5" stroke-dasharray="6 4" fill="none">
+              <path d="M204 96 Q260 100 300 96"/>
+              <path d="M204 116 Q260 120 300 116"/>
+            </g>
+            <!-- trolley -->
+            <g transform="translate(150,168)">
+              <rect x="0" y="0" width="108" height="8" rx="4" fill="#64748b"/>
+              <circle cx="14" cy="14" r="8" fill="#334155"/>
+              <circle cx="94" cy="14" r="8" fill="#334155"/>
+              <line x1="10" y1="0" x2="10" y2="-14" stroke="#64748b" stroke-width="5"/>
+            </g>
+            <!-- cones -->
+            <g transform="translate(84,150)">
+              <polygon points="14,0 28,42 0,42" fill="#f97316" stroke="#c2410c" stroke-width="2"/>
+              <rect x="-4" y="42" width="36" height="8" rx="3" fill="#f97316" stroke="#c2410c" stroke-width="2"/>
+            </g>
+            <g transform="translate(120,158)">
+              <polygon points="10,0 21,32 0,32" fill="#f97316" stroke="#c2410c" stroke-width="2"/>
+              <rect x="-3" y="32" width="27" height="7" rx="3" fill="#f97316" stroke="#c2410c" stroke-width="2"/>
+            </g>
+            <!-- signage -->
+            <g transform="translate(318,120)">
+              <rect width="62" height="56" rx="6" fill="#fff" stroke="#dc2626" stroke-width="3"/>
+              <circle cx="31" cy="24" r="15" fill="none" stroke="#dc2626" stroke-width="3"/>
+              <path d="M31 12 v14 M31 32 v4" stroke="#dc2626" stroke-width="3.5" stroke-linecap="round"/>
+              <text x="31" y="50" text-anchor="middle" font-size="7.5" font-weight="800" fill="#dc2626" font-family="Segoe UI, sans-serif">NO SMOKING</text>
+            </g>
+
+            <circle class="hotspot" cx="204" cy="40" r="12" tabindex="0" role="button"
+              data-title="Valve cap" data-tip="Cap on, valve closed, during transport. A sheared valve turns a cylinder into a missile."/>
+            <circle class="hotspot" cx="252" cy="106" r="12" tabindex="0" role="button"
+              data-title="Chain / clamp" data-tip="Every cylinder is chained upright — in use, in transit and in storage. Never leave one unsecured, even for a minute."/>
+            <circle class="hotspot" cx="204" cy="176" r="12" tabindex="0" role="button"
+              data-title="Trolley" data-tip="Use a trolley or sling. Never drag, never roll a cylinder on its side, never lift by the valve."/>
+            <circle class="hotspot" cx="96" cy="176" r="12" tabindex="0" role="button"
+              data-title="The route" data-tip="Plan the path before you move. Cones and a cleared route prevent the collision that causes the fall."/>
+            <circle class="hotspot" cx="348" cy="148" r="12" tabindex="0" role="button"
+              data-title="Signage" data-tip="Correct hazard signage at the storage point. Oxidiser, flammable and inert gases do not share a corner."/>
+          </svg>
+          <div class="hotspot-panel" data-default="Click a pulsing dot on the illustration to reveal a safety insight.">
+            Click a pulsing dot on the illustration to reveal a safety insight.
+          </div>
+        </div>
+
+        <div class="tabs">
+          <button class="tab active" data-tab="g4-obj">Objective</button>
+          <button class="tab" data-tab="g4-mat">Materials</button>
+          <button class="tab" data-tab="g4-play">How to Play</button>
+          <button class="tab" data-tab="g4-score">Scoring</button>
+        </div>
+
+        <div class="panel active" id="g4-obj">
+          <p><strong>Goal:</strong> Rehearse the full cylinder lifecycle — inspect, secure, move, store — and practise the two emergency responses teams get wrong most often.</p>
+          <ul>
+            <li>Inspect before you move: cap, valve, body damage, label.</li>
+            <li>Always upright, always secured, always with a trolley or sling.</li>
+            <li>Hissing cylinder or falling cylinder: evacuate and escalate — do not intervene.</li>
+          </ul>
+        </div>
+        <div class="panel" id="g4-mat">
+          <ul>
+            <li>2 empty cylinders or PVC pipe props (~60 cm) with a rope handle</li>
+            <li>Cylinder trolley or rope sling, chain/clamp, mock wall bracket</li>
+            <li>5–6 cones for the obstacle course</li>
+            <li>"NO SMOKING" / "OXIDIZER" / "FLAMMABLE" signage cards</li>
+          </ul>
+        </div>
+        <div class="panel" id="g4-play">
+          <p><strong>Obstacle relay — 10 minutes.</strong></p>
+          <ul>
+            <li><b>P1:</b> inspects the cylinder (cap on, no damage, label correct) and shouts "CLEAR".</li>
+            <li><b>P2:</b> secures it upright on the trolley or sling — judge checks.</li>
+            <li><b>P3 &amp; P4:</b> navigate the cone course together. No dragging, no rolling on its side, never left unsecured.</li>
+            <li><b>P5:</b> chains it to the wall bracket upright and places the correct signage.</li>
+            <li><b>Judge triggers:</b> <em>"The cylinder is hissing!"</em> and <em>"The cylinder has fallen!"</em> — correct response: evacuate, ventilate, remove ignition sources, notify.</li>
+          </ul>
+        </div>
+        <div class="panel" id="g4-score">
+          <div class="score-row"><span>Safe transport technique</span><b class="plus">+10</b></div>
+          <div class="score-row"><span>Correct securing to bracket</span><b class="plus">+5</b></div>
+          <div class="score-row"><span>Correct signage placement</span><b class="plus">+5</b></div>
+          <div class="score-row"><span>Each correct emergency response</span><b class="plus">+5</b></div>
+          <div class="score-row"><span>Dragging, rolling or leaving unsecured</span><b class="minus">−10</b></div>
+        </div>
+      </article>
+
+      <!-- ============ GAME 5 ============ -->
+      <article class="game-card">
+        <div class="card-top">
+          <div class="badge">5</div>
+          <div>
+            <h3>Label Lockdown</h3>
+            <div class="theme">Sample ID · chain of custody · segregation · quarantine</div>
+          </div>
+        </div>
+
+        <div class="scene-wrap">
+          <svg class="scene" viewBox="0 0 400 220" role="img" aria-label="Sample bottles with labels and segregation bins">
+            <rect width="400" height="220" fill="#fff1f2"/>
+            <rect y="178" width="400" height="42" fill="#ffe4e6"/>
+            <!-- bottle 1: unlabelled -->
+            <g transform="translate(36,96)">
+              <rect x="10" y="-16" width="22" height="14" rx="3" fill="#94a3b8"/>
+              <rect x="0" y="0" width="42" height="82" rx="8" fill="#e2e8f0" stroke="#64748b" stroke-width="2.5"/>
+              <text x="21" y="46" text-anchor="middle" font-size="20" font-weight="800" fill="#dc2626" font-family="Segoe UI, sans-serif">?</text>
+            </g>
+            <!-- bottle 2: correct label -->
+            <g transform="translate(104,96)">
+              <rect x="10" y="-16" width="22" height="14" rx="3" fill="#0f766e"/>
+              <rect x="0" y="0" width="42" height="82" rx="8" fill="#f8fafc" stroke="#0f766e" stroke-width="2.5"/>
+              <rect x="5" y="26" width="32" height="30" rx="3" fill="#ffffff" stroke="#0f766e" stroke-width="1.5"/>
+              <rect x="9" y="32" width="24" height="3" fill="#0f766e"/>
+              <rect x="9" y="39" width="18" height="3" fill="#94a3b8"/>
+              <rect x="9" y="46" width="22" height="3" fill="#94a3b8"/>
+              <path d="M21 12 l9 16 h-18 z" fill="#f59e0b"/>
+            </g>
+            <!-- bottle 3: wrong hazard symbol -->
+            <g transform="translate(172,96)">
+              <rect x="10" y="-16" width="22" height="14" rx="3" fill="#dc2626"/>
+              <rect x="0" y="0" width="42" height="82" rx="8" fill="#fef2f2" stroke="#dc2626" stroke-width="2.5"/>
+              <rect x="5" y="26" width="32" height="30" rx="3" fill="#fff" stroke="#dc2626" stroke-width="1.5"/>
+              <circle cx="21" cy="41" r="10" fill="#fff" stroke="#dc2626" stroke-width="2"/>
+              <path d="M13 34 l16 14" stroke="#dc2626" stroke-width="2.5"/>
+            </g>
+            <!-- bins -->
+            <g transform="translate(238,112)">
+              <rect width="48" height="66" rx="5" fill="#dbeafe" stroke="#2563eb" stroke-width="2.5"/>
+              <text x="24" y="38" text-anchor="middle" font-size="9" font-weight="800" fill="#1d4ed8" font-family="Segoe UI, sans-serif">ACIDS</text>
+            </g>
+            <g transform="translate(292,112)">
+              <rect width="48" height="66" rx="5" fill="#dcfce7" stroke="#16a34a" stroke-width="2.5"/>
+              <text x="24" y="34" text-anchor="middle" font-size="8" font-weight="800" fill="#15803d" font-family="Segoe UI, sans-serif">BASES /</text>
+              <text x="24" y="45" text-anchor="middle" font-size="8" font-weight="800" fill="#15803d" font-family="Segoe UI, sans-serif">SOLVENTS</text>
+            </g>
+            <g transform="translate(346,112)">
+              <rect width="42" height="66" rx="5" fill="#fee2e2" stroke="#dc2626" stroke-width="2.5"/>
+              <text x="21" y="34" text-anchor="middle" font-size="8" font-weight="800" fill="#b91c1c" font-family="Segoe UI, sans-serif">QUARAN-</text>
+              <text x="21" y="45" text-anchor="middle" font-size="8" font-weight="800" fill="#b91c1c" font-family="Segoe UI, sans-serif">TINE</text>
+            </g>
+
+            <circle class="hotspot" cx="57" cy="136" r="12" tabindex="0" role="button"
+              data-title="Unlabelled bottle" data-tip="An unlabelled container is an unknown chemical. It never reaches the bench — it goes straight to quarantine."/>
+            <circle class="hotspot" cx="126" cy="118" r="12" tabindex="0" role="button"
+              data-title="Complete label" data-tip="Name, concentration, date, hazard symbol, initials. Five fields, no exceptions."/>
+            <circle class="hotspot" cx="193" cy="136" r="12" tabindex="0" role="button"
+              data-title="Hazard symbol" data-tip="The wrong pictogram is more dangerous than none — it actively misinforms the analyst and the spill responder."/>
+            <circle class="hotspot" cx="262" cy="146" r="12" tabindex="0" role="button"
+              data-title="Segregation bins" data-tip="Acids and bases never share storage. Incompatibility is a reaction waiting for a bad day."/>
+            <circle class="hotspot" cx="367" cy="146" r="12" tabindex="0" role="button"
+              data-title="Quarantine" data-tip="Rejected samples are physically separated and tagged — not left on the bench hoping someone notices."/>
+          </svg>
+          <div class="hotspot-panel" data-default="Click a pulsing dot on the illustration to reveal a safety insight.">
+            Click a pulsing dot on the illustration to reveal a safety insight.
+          </div>
+        </div>
+
+        <div class="tabs">
+          <button class="tab active" data-tab="g5-obj">Objective</button>
+          <button class="tab" data-tab="g5-mat">Materials</button>
+          <button class="tab" data-tab="g5-play">How to Play</button>
+          <button class="tab" data-tab="g5-score">Scoring</button>
+        </div>
+
+        <div class="panel active" id="g5-obj">
+          <p><strong>Goal:</strong> Make the link between a sloppy label and a downstream safety event — then make correct labelling and segregation the default.</p>
+          <ul>
+            <li>Accept or reject a sample based on label completeness.</li>
+            <li>Segregate by compatibility without mixing incompatible chemicals.</li>
+            <li>Treat labelling as a patient-safety issue, not paperwork.</li>
+          </ul>
+        </div>
+        <div class="panel" id="g5-mat">
+          <ul>
+            <li>20 mock sample bottles with a mix of correct and defective labels (missing date, illegible name, wrong hazard symbol, unlabelled, expired)</li>
+            <li>3 sorting bins labelled Acids / Bases &amp; Solvents / Rejected–Quarantine</li>
+            <li>Red "REJECT" and white "ACCEPT" stickers for each team</li>
+            <li>2 surprise bottles with deliberately wrong hazard symbols</li>
+          </ul>
+        </div>
+        <div class="panel" id="g5-play">
+          <p><strong>Two-phase race — 10 minutes.</strong></p>
+          <ul>
+            <li><b>Phase 1 — Label Inspection (5 min):</b> each team receives 10 bottles and must ACCEPT or REJECT every one based on label completeness. Rejected bottles get a red sticker and a written reason.</li>
+            <li><b>Phase 2 — Segregation Sprint (5 min):</b> accepted bottles are placed in the correct compatibility bin. The judge swaps in two surprise bottles with wrong hazard symbols mid-game.</li>
+          </ul>
+        </div>
+        <div class="panel" id="g5-score">
+          <div class="score-row"><span>Each correct accept/reject decision</span><b class="plus">+2</b></div>
+          <div class="score-row"><span>Each correct written reason</span><b class="plus">+1</b></div>
+          <div class="score-row"><span>Each correct bin placement</span><b class="plus">+3</b></div>
+          <div class="score-row"><span>Mixing incompatible chemicals</span><b class="minus">−10</b></div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ================= SCHEDULE ================= -->
+  <section id="schedule">
+    <div class="sec-head">
+      <span class="sec-num">RUN SHEET</span>
+      <h2>Master Rotation Schedule</h2>
+    </div>
+    <p class="sec-sub">75 minutes total. Two teams rotate in opposite directions so no station is ever double-booked.</p>
+
+    <div class="tablecard">
+      <table>
+        <thead>
+          <tr>
+            <th>Time</th>
+            <th><span class="tagA">Team A</span> (6 pax)</th>
+            <th><span class="tagB">Team B</span> (5 pax)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>0 – 15 min</strong></td><td>Game 1 · Spill Squad</td><td>Game 2 · PPE Speed &amp; Spot</td></tr>
+          <tr><td><strong>15 – 30 min</strong></td><td>Game 2 · PPE Speed &amp; Spot</td><td>Game 3 · Broken Glass Protocol</td></tr>
+          <tr><td><strong>30 – 45 min</strong></td><td>Game 3 · Broken Glass Protocol</td><td>Game 4 · Cylinder Shuffle</td></tr>
+          <tr><td><strong>45 – 60 min</strong></td><td>Game 4 · Cylinder Shuffle</td><td>Game 5 · Label Lockdown</td></tr>
+          <tr><td><strong>60 – 75 min</strong></td><td>Game 5 · Label Lockdown</td><td>Game 1 · Spill Squad</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="sec-sub" style="margin-top:12px;">If a single 75-minute block is impractical, split into five standalone 15-minute "safety moments" — one game per day at shift start.</p>
+  </section>
+
+  <!-- ================= FACILITATOR TIPS ================= -->
+  <section id="tips">
+    <div class="sec-head">
+      <span class="sec-num">FACILITATOR</span>
+      <h2>Tips from the Safety Officer's Playbook</h2>
+    </div>
+    <p class="sec-sub">Small details that decide whether this is a game — or a genuine safety intervention.</p>
+
+    <div class="tips">
+      <div class="tip">
+        <h4>1. One judge per station</h4>
+        <p>Use a fellow safety officer or supervisor with a printed scoring rubric. Objective judging is what makes the results credible back on the floor.</p>
+      </div>
+      <div class="tip">
+        <h4>2. Open with the "why"</h4>
+        <p>Each game starts with a 30-second real incident story — "last year a technician picked up broken glass with bare hands…". Stories stick; rules fade.</p>
+      </div>
+      <div class="tip">
+        <h4>3. Penalties are teaching moments</h4>
+        <p>Pause, explain, resume. Never let a "safety stop" embarrass anyone — the goal is a corrected habit, not a lost point.</p>
+      </div>
+      <div class="tip">
+        <h4>4. No real hazards on the day</h4>
+        <p>Water, mock labels and plastic props only. Complete a risk assessment for the games themselves — ironic, but essential.</p>
+      </div>
+      <div class="tip">
+        <h4>5. Tie scores to recognition</h4>
+        <p>Publish a live scoreboard and award a "Safety Champion" badge. Visible competition drives far higher engagement than a lecture.</p>
+      </div>
+      <div class="tip">
+        <h4>6. Capture the debrief</h4>
+        <p>Write debrief answers on a flipchart. Those notes become real improvement actions for your QC safety programme — the event should leave a paper trail.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    Event Proposal · Safety Awareness Games for the QC Department · Prepared by the QC Safety Officer
+  </footer>
+</div>
+
+<button class="btn primary print-btn" onclick="window.print()">🖨 Print proposal</button>
+
+<script>
+/* ---------- INTERACTIVE SVG HOTSPOTS ---------- */
+document.querySelectorAll('.game-card').forEach(card => {
+  const panel = card.querySelector('.hotspot-panel');
+  const spots = card.querySelectorAll('.hotspot');
+
+  function activate(spot){
+    spots.forEach(s => s.classList.remove('active'));
+    spot.classList.add('active');
+    panel.innerHTML = '<strong>' + spot.dataset.title + '</strong>' + spot.dataset.tip;
+    panel.classList.add('show');
+  }
+
+  spots.forEach(spot => {
+    spot.addEventListener('click', () => activate(spot));
+    spot.addEventListener('mouseenter', () => activate(spot));
+    spot.addEventListener('focus', () => activate(spot));
+    spot.addEventListener('keydown', e => {
+      if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); activate(spot); }
+    });
+  });
+});
+
+/* ---------- TABS ---------- */
+document.querySelectorAll('.game-card').forEach(card => {
+  const tabs = card.querySelectorAll('.tab');
+  const panels = card.querySelectorAll('.panel');
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      panels.forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      card.querySelector('#' + tab.dataset.tab).classList.add('active');
+    });
+  });
+});
+
+/* ---------- STATION TIMER ---------- */
+(function(){
+  const clock = document.getElementById('clock');
+  const startBtn = document.getElementById('startBtn');
+  const resetBtn = document.getElementById('resetBtn');
+  const phaseLabel = document.getElementById('phaseLabel');
+  let total = 15 * 60, remaining = total, running = false, handle = null;
+
+  function fmt(s){
+    const m = Math.floor(s / 60), sec = s % 60;
+    return String(m).padStart(2,'0') + ':' + String(sec).padStart(2,'0');
+  }
+
+  function render(){
+    clock.textContent = fmt(remaining);
+    clock.classList.remove('warn','danger');
+    if(remaining <= 60) clock.classList.add('danger');
+    else if(remaining <= 120) clock.classList.add('warn');
+
+    // phase hint: last 3 min = debrief
+    phaseLabel.textContent = remaining <= 180 ? 'Debrief — capture the lessons' : 'Briefing & play';
+  }
+
+  function tick(){
+    if(remaining > 0){
+      remaining--;
+      render();
+    } else {
+      stop();
+      clock.textContent = '00:00';
+      phaseLabel.textContent = 'Time — rotate to next station';
+    }
+  }
+
+  function start(){
+    if(running) return stop();
+    if(remaining === 0) remaining = total;
+    running = true;
+    startBtn.textContent = '❚❚ Pause';
+    handle = setInterval(tick, 1000);
+  }
+
+  function stop(){
+    running = false;
+    startBtn.textContent = '▶ Start';
+    clearInterval(handle);
+  }
+
+  startBtn.addEventListener('click', start);
+  resetBtn.addEventListener('click', () => { stop(); remaining = total; render(); });
+
+  document.querySelectorAll('[data-set]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      stop();
+      total = remaining = parseInt(btn.dataset.set, 10) * 60;
+      render();
+    });
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>
